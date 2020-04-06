@@ -17,6 +17,7 @@ export default function Calculator(){
 
         numbers.push(result);
         const temp = numbers.map(Number);
+
         if(temp.length === 2){
             if(operation === 'sum'){
                 res = temp[0] + temp[1];
@@ -31,20 +32,24 @@ export default function Calculator(){
                     res = temp[0] / temp[1]
                 }
             }
-
-            res = res.toString();
-            if(res.length <= 9){
-                setResult(res);
-            }else{
-                setResult('Very large');
-            }
-
-            for(let i = 1; i <= 2; i++){
-                numbers.shift();
-            }
-
-            setRun(true);
+        }else{
+            numbers.shift();
+            return;
         }
+
+        res = res.toString();
+        if(res.length <= 9){
+            console.log('temp ' + temp);
+            setResult(res);
+        }else{
+            setResult('Very large');
+        }
+
+        for(let i = 1; i <= 2; i++){
+            numbers.shift();
+        }
+
+        setRun(true);
     }
 
     function setNumberOperation(operation){
